@@ -1,0 +1,705 @@
+/* -------------------------------------------------------------------------- */
+/* Created and maintained by the Delaware Valley Regional Planning Commission */
+/* Author(s): Christopher Pollard, Robert Beatty, Jesse Strangfield---------- */
+/* Date Updated: July 2017 -------------------------------------------------- */
+/* Version: 2.0.1 Beta ------------------------------------------------------ */ 
+/* -------------------------------------------------------------------------- */
+
+
+/* -------- */
+/*  Overall */
+/* -------- */ 
+
+    html, body, #map, #sidebar, #container, .legend {
+        font-family: Century Gothic,CenturyGothic,AppleGothic,sans-serif;
+        height: 100%;
+        margin: 0px;
+    }
+
+    #sidebar {     
+       display: block;
+       border-right: 2px solid #A1AD6B;
+       padding: 10px 0px 0px 10px;
+       overflow: auto;
+    }
+
+    body {
+        padding-top: 50px;
+    }
+
+    p {
+        margin: 0px 0px 10px 10px;
+    }
+
+    #loading {
+        position: absolute;
+        width: 220px;
+        height: 19px;
+        top: 50%;
+        left: 50%;
+        margin: -10px 0 0 -110px;
+        z-index: 20001;
+    }
+    
+    h3, .h3{
+        font-size: 16px;
+        font-weight: bold;
+    }
+
+    #loading{
+        display: none;
+    }
+
+
+/* -------- */
+/*  Nav Bar */
+/* -------- */ 
+
+    #home-logo{
+        margin: 10px 0px 0px 20px;
+    }
+
+    #project-logo{
+        margin: 5px 0px 0px 10px;
+    }
+
+    .navbar .navbar-brand {
+        font-weight: bold;
+        font-size: 22px;
+        color: white;
+        white-space: nowrap;
+    }
+
+    .navbar-inverse{
+        background-color:#526018;
+        border: none;
+    }
+    .navbar-inverse .navbar-nav > li > a {
+        color: white;
+    }
+
+    .navbar-inverse .navbar-nav > .dropdown > a .caret {
+        border-top-color: white;
+        border-bottom-color: white;
+    }
+    
+    .nav-tabs > li {
+        float: left;
+        margin-bottom: -1px;
+    }
+
+    .nav-tabs > li > a {
+        color: #6C7C2E;
+    }
+    .nav-tabs > li > a:hover {
+        color: #526018;
+        background-color: #C0C89C;
+    }
+
+    .nav-tabs > li.active > a{
+        background-color: white;
+        color: #EECD57;  
+    }   
+     .nav-tabs > li.active > a:hover {
+        background-color: #F9EEC7;
+        color: #E8BC1F;  
+    }        
+
+    .nav-btn{
+        margin:10px 10px 0px 4px;
+        float:right;
+        color:#FFF;
+        background-color:#E8BC1F;
+    }
+
+    #how-modal-open{
+        margin-right: 25px;
+    }
+
+    #search-container{
+        display: none;
+        width: 250px;
+    }
+
+/* -------- */
+/*  Sidebar */
+/* -------- */ 
+
+    /* Overall Styling */
+
+        .tab-content {
+            font-family: 'Libre Franklin', Arial, sans-serif;
+            font-size: 13px;            
+            margin-left: -10px;
+            background-color: white;
+            padding-top: 10px;
+        }
+
+
+        .panel-primary >.panel-heading {
+            color: black;
+        }
+
+        .panel-primary {
+            border-color: ;
+        }
+
+        .panel{
+            border-width: 2px 0px 0px 0px;
+        }
+
+        .panel-default > .panel-heading {
+            background-color: #6FAA7C;
+            border-color: #A1AD6B;
+            color: #333;
+        }
+        .panel-group .panel {
+            overflow: hidden;
+            border-radius: 0px;
+        }
+
+
+
+    /* Tabs */
+
+        #legend-tab{
+            border-bottom: 2px solid #A1AD6B;
+        }
+
+        #legend-tab li a {
+            background-color:#EECD57;
+            font-weight: bold;
+            color:white;
+            border-bottom: 1px solid #A1AD6B;
+        }
+
+        #legend-tab li.active a {
+            background-color:#A1AD6B;
+            font-weight: bold;
+            color:white;
+        }
+
+    /* Legend Pane */
+
+        /* Overall Styling */
+
+            .panel-default {
+                border-width: 0px;
+
+            }
+
+            #legend-panel{
+                padding: 0px 20px;
+            }
+            
+            .legend {
+                height: 100%;
+                background-color: white;
+            }
+
+            .legend-direc{
+                text-align: center;
+                font-weight: 700;
+            }
+            
+        /* Tooltip */
+
+            .tooltip {
+                position:absolute;
+                z-index:1070;
+                display:block;
+                font-size:12px;
+                line-height:1;
+                visibility:visible;
+                opacity:.5
+            }
+
+            .tooltip.in {
+                opacity:.8;
+                color: rgba(0,0,0,1);
+            }
+
+
+            .tooltip-inner {
+                font-family: 'Libre Franklin', Arial,sans-serif;
+                max-width:200px;
+                padding:3px 8px;
+                color: #FFF;
+                text-align:center;
+                text-decoration:none;
+                background-color:#000;
+                border: 1px solid #000;
+                border-radius:2px
+            }
+
+        /* Legend Buttons */
+
+
+            .attr-text{
+                font-weight: bold;
+                background-color: #EEE;
+                margin-top: 8px;
+                width: 100%;
+                padding: 3px 0px;
+                text-align: center;
+            }
+
+            .attr-text > i{
+                padding: 5px 10px;
+            }
+
+            .panel-heading{
+                padding: 0px;
+                width: 60%;
+                margin: auto;
+            }
+            
+            .panel-heading a:hover {
+                text-decoration: none;
+            }
+
+            .panel-heading > label{
+                padding: 0px;
+            }
+
+            .legend-button{
+                padding: 0px!important;
+                width: 100%;
+            }
+
+            .legend-button-toggled {
+                padding: 0px!important; 
+                width: 100%;
+                opacity: 1;
+            }
+
+            .legend-button-not-toggled {
+                padding: 0px!important; 
+                width: 100%;
+                opacity: .4;
+            }
+
+            .legend-check {
+                display: none;
+            }
+
+            .color-2002{
+                color: #CC2127;
+                border: 2px solid #CC2127;  
+            }
+
+            .color-2003{
+                color: #F36D44;
+                border: 2px solid #F36D44;      
+            }
+
+            .color-2004{
+                color: #83C1EA;
+                border: 2px solid #83C1EA;      
+            }
+
+            .color-2005{
+                color: #87BB40;
+                border: 2px solid #87BB40;      
+            }
+
+            .color-2007{
+                color: #CE1688;
+                border: 2px solid #CE1688;      
+            }
+
+            .color-2010{
+                color: #B53F97;
+                border: 2px solid #B53F97;      
+            }
+
+            .color-2012{
+                color: #0062A7;
+                border: 2px solid #0062A7;      
+            }
+
+            .color-2015{
+                color: #DFC27C;
+                border: 2px solid #DFC27C;      
+            }
+
+            .color-2017{
+                color: #1C9647;
+                border: 2px solid #1C9647;  
+            }
+
+
+    /* Project Info Pane*/
+
+        #results-panel {
+            padding-top: 5px;
+
+        }
+
+        #infosidebar{
+            padding: 0px 10px;
+        }
+
+        /* Project Banner */
+
+            /* Title */
+            #titlepr {
+                font-family: Century Gothic, Arial, sans-serif; 
+                color:white;
+                padding:5px;
+                -webkit-border-top-left-radius: 4px;
+                -webkit-border-bottom-left-radius: 4px;
+                -webkit-border-top-right-radius: 4px;
+                -webkit-border-bottom-right-radius: 4px;
+            }
+
+            /* Project Year */
+            #label-year{
+                float: right;
+                font-weight: 700;
+                font-size: 20px;
+                margin-top: 5px;
+                margin-right: 15px;
+            }
+
+            /* Municipality */
+            #muni-label{
+                font-size: 14px;
+                color: #fff;
+                padding-top: 3px;
+                margin: 0px;
+            }
+
+            /* Report Link Styling */
+            #report-link {
+                font-size: 18px;
+                font-weight: bold;
+                color: #fff;
+                width: 75%;
+                margin: 0px;
+            }
+
+            #report-link>a{
+                color: #fff;
+                text-decoration: underline;
+                margin-bottom: 3px;
+            }
+
+            #report-link>a:hover{
+                font-weight: normal;
+            }
+
+        /* Description */
+
+            /* Description Text */
+            #desc{
+                font-family: 'Libre Franklin', arial, sans-serif;
+                color: #555;
+                font-size: 14px;
+                margin-top: 1em;
+            }
+
+            /* Award */
+            #money {
+                font-family: Century Gothic, Arial, sans-serif;
+                font-size: 28px;
+                color: #A1AD6B;
+                font-weight: 700;
+                margin-top: 10px;
+                margin-bottom: -5px;
+                text-align: center;
+            }
+
+            #money2 {
+                font-family: Century Gothic, Arial, sans-serif;
+                font-size: 14px;
+                color: #A1AD6B;
+                font-weight: 700;
+                text-align: center;
+                margin: 0px 0px 0px 15px;
+                padding: 0px;
+            }
+
+
+/*--------- */
+/*  Modals  */
+/*--------- */ 
+    
+    .modal-dialog{
+        width: 45em;
+    }
+
+    .modal-header {
+        padding: 10px 15px 5px !important;
+        background-color: #526018 !important;
+        border-top-left-radius: 4px;
+        border-top-right-radius: 4px;
+        color: #E8BC1F;
+    }
+
+    .modal-title  {
+        color: #FFF;
+    }
+
+    .modal-body .nav > li > a {
+        padding: 10px 8px !important;
+    }
+
+    /* Tabs */
+
+    #about-tabs{
+        font-weight: 700;
+    }
+
+    /* Content */
+
+    #about-tabs-content{
+        padding-top: 10px;
+    }
+
+    a.one, a.one:hover, a.one:focus {
+        color: #0084C8;
+        text-decoration:underline;
+    }
+
+    li.one {
+        margin-left: 35px;
+        font-style: italic;
+    }
+
+    .modal-body{
+        font-family: Franklin Gothic Lighter, Arial, sans-serif;
+    }
+
+    .modal-body>a {
+        color: #3D83B0;
+    }
+
+    .modal-body>h4{
+        font-family: Century Gothic, Arial, sans-serif;
+        font-weight: 700;
+    }
+
+    .project-modal{
+        text-align: center;
+        font-size: 20px;
+        font-weight: 700;
+    }
+
+
+/* --------- */
+/*  Leaflet  */
+/* --------- */ 
+
+    .leaflet-label {
+        background: rgb(235, 235, 235);
+        background: rgba(235, 235, 235, 0.81);
+        background-clip: padding-box;
+        border-color: #777;
+        border-color: rgba(0,0,0,0.25);
+        border-radius: 4px;
+        border-style: solid;
+        border-width: 4px;
+        color: #111;
+        display: block;
+        font: 12px/20px 'Libre Franklin', Arial, sans-serif;
+        font-weight: bold;
+        padding: 1px 6px;
+        position: absolute;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        pointer-events: none;
+        white-space: nowrap;
+        z-index: 6;
+    }
+
+    .leaflet-label.leaflet-clickable {
+        cursor: pointer;
+        pointer-events: auto;
+    }
+    .leaflet-label:before, .leaflet-label:after {
+        border-top: 6px solid transparent;
+        border-bottom: 6px solid transparent;
+        content: none;
+        position: absolute;
+        top: 5px;
+        }
+
+    .leaflet-label:before {
+        border-right: 6px solid black;
+        border-right-color: inherit;
+        left: -10px;
+    }
+    .leaflet-label:after {
+        border-left: 6px solid black;
+        border-left-color: inherit;
+        right: -10px;
+    }
+
+    .leaflet-label-right:before, .leaflet-label-left:after {
+        content: "";
+    }
+
+    .form-control {
+        border-radius: 0px;
+    }
+
+    .input-group{
+        width:200px;
+    }
+
+    .leaflet-control-zoom,.leaflet-control-layers {
+        border:none;
+    }
+
+    .form-control{
+        border-radius:0px;
+    }
+
+    .label {font-size: 20px;
+        color: black;
+        margin-left:-10px;
+        }
+
+    .leaflet-control-zoom,.leaflet-control-layers {
+        border:none;
+    }
+
+    .leaflet-control-view-center { 
+    background-image: url('img/region.png');
+    width: 26px;
+    height: 26px;
+    -webkit-transition: width .175s ease-in;
+    -moz-transition: width .175s ease-in;
+    -ms-transition: width .175s ease-in;
+    -o-transition: width .175s ease-in;
+    transition: width .175s ease-in;
+    }
+
+
+/* --------- */
+/* Bootstrap */
+/* --------- */ 
+
+    .btn-primary {
+        background-color: #333A97;
+        border-color: #333A97;
+        height:35px;
+    }
+
+    .btn-primary:hover,.btn-primary:focus,.btn-primary:active,.btn-primary.active,.open .dropdown-toggle.btn-primary{
+        color:#fff;
+        background-color:#5B6BFC;
+        border-color:#0084C8
+    }
+
+    .close {
+        float: right;
+        font-size: 21px;
+        font-weight: bold;
+        line-height: 1;
+        color: #fff;
+        text-shadow: 0px 1px 0px rgb(255, 255, 255);
+        opacity: 1;
+    }
+
+    .dropdown > ul> li > a:hover, .dropdown > ul>  li > a:focus {
+        background-color: #0084C8!important;
+        text-decoration: none;
+    }
+
+
+/* --------- */
+/*   Other   */
+/* --------- */ 
+
+    .typeahead-header {
+        margin: 0 5px 5px 5px;
+        padding: 3px 0;
+        border-bottom: 1px solid #ccc;
+    }
+
+    .tt-menu{
+        background-color: #FDF8E8;
+        color: #111;
+    }
+
+    .tt-cursor{
+        background-color: #F3DD8F;
+    }
+
+    #searchbox {
+        -webkit-border-top-left-radius: 4px;
+        -webkit-border-bottom-left-radius: 4px;
+        -moz-border-top-left-radius: 4px;
+        -moz-border-bottom-left-radius: 4px;
+        border-top-left-radius: 4px;
+        border-bottom-left-radius: 4px;
+        background-color: #FDF8E8;
+        border-radius: 4px;
+        color: #333;
+        font-weight: bold;
+        width: 100%;
+    }
+
+     
+
+
+
+
+    .shield {
+        vertical-align: middle;
+        height: 30px;
+        width: 33px;
+        padding-right:5px;
+    }
+
+
+    input[type=range] {
+        -webkit-appearance: none;
+        height:130px;
+        cursor: pointer;
+    }
+
+     #slidercase {
+        display: inline-flex;
+        z-index: 1001;
+        padding: 8px;
+        background: rgba(140, 140, 140, 0.85);
+        cursor: pointer;
+    }
+
+    #side1 {
+      float: right;
+      width: 100%;
+    }
+
+    #side2 {
+      float: left;
+      width: 200px;
+      margin-left: -200px;
+    }
+
+    .checkbox label {
+        font-size: 11px;
+    }
+
+    #popup {
+        max-height: 65px;
+    }        
+
+    .popup {
+        max-width: 300px;
+    }
+
+    #info-icon {
+        color: #aaa8a8;
+        margin-right: 5px;
+        cursor: pointer;
+    }
+
+    #reduceTabs {
+        border-bottom: 0px solid black;
+    }  
